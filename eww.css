@@ -1,0 +1,35 @@
+* {
+    font-size: 16;
+}
+
+.bar {
+    background-color: #3a3a3a;
+    padding: 0 2em;
+}
+
+.active-ws {
+    border: 1px solid #fff;
+}
+
+.icon {
+    font-family: FontAwesome7Free;
+}
+
+.hidden-box {
+    background-color: #3a3a3a;
+    font-size: 14px;
+    padding: 2em;
+    border-radius: 16px;
+}
+
+.power-button {
+    border: 1px solid #fff;
+}
+
+.power-button:hover {
+    background-color: #575353;
+}
+
+.tooltip {
+    background-color: #3a3a3a;
+}
