@@ -203,6 +203,7 @@
   (eventbox
     :onclick "networkmanager_dmenu"
     :cursor "pointer"
+    :halign "center"
       (for network in {network.connection_list}
         (tooltip
           (label :class "tooltip" :text {network.state=="connected" ? "${network.connection} ${network.signal}%" : ""})
