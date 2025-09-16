@@ -119,16 +119,17 @@
     :orientation "h"
     :halign "start"
     :spacing 10
-    :height 
+    ;; :height "20px"   ; <- optional, only if you want it
     (for ws in {ws-data.occupied}
       (button 
-        :class {ws.id==ws-data.active ? "active-ws" : "ws"}
-        :onclick {"hyprctl dispatch workspace ${ws.id}"}
+        :class {ws.id == ws-data.active ? "active-ws" : "ws"}
+        :onclick "hyprctl dispatch workspace ${ws.id}"
         (image
-          :path {ws.id==ws-data.active ? "/home/andrew/Pictures/lit-bonfire.png" : "/home/andrew/Pictures/unlit-bonfire.png"}
+          :path {ws.id == ws-data.active
+                  ? "/home/andrew/Pictures/lit-bonfire.png"
+                  : "/home/andrew/Pictures/unlit-bonfire.png"}
           :image-width 16
-          :image-height 20
-          :icon "bonfire"
+          :image-height 16
         )
       )
     )
@@ -207,13 +208,13 @@
           (label :class "tooltip" :text {network.state=="connected" ? "${network.connection} ${network.signal}%" : ""})
           (label 
           :class "icon"
-          :visible {network.state="connected"}
-          :text {network.type=="ethernet"&&network.state=="connected"} ? "" : "" })
+          :text {network.type=="ethernet" ? "" : "" }
+          :style "margin: 0 auto"
+          )
         )
-      )
-  ) 
+      ) 
+  )
 )
-
 ; -------- Hidden Menus ------------------------------------
 
 (defwidget power-menu []
@@ -259,7 +260,7 @@
         :class "hidden-box"
         (for device in {audio.list}
           (button 
-            :onclick {"pactl set-default-sink ${device.name}; eww update open-audio=false"}
+            :onclick "pactl set-default-sink ${device.name}; eww update open-audio=false"
             :class "power-button"
             (label :text "${device.description}")
           ) 
