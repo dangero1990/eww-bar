@@ -2,6 +2,7 @@ $flask-yellow: rgba(196, 164, 99, 1);
 $ashen-black: rgba(28, 28, 28, 1);
 $hallow-gray: rgb(106, 106, 106);
 $hallow-accent: rgb(128, 127, 127);
+$ember-red: rgba(179, 71, 45, 1);
 
 * {
     font-size: 16;
@@ -42,7 +43,7 @@ $hallow-accent: rgb(128, 127, 127);
 }
 
 .icon {
-    font-family: FontAwesome7Free;
+    font-family: "Font Awesome 7 Free";
 }
 
 .hidden-box {

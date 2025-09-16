@@ -158,6 +158,7 @@
     :spacing 16
     :space-evenly true
     (system-tray)
+    (bat)
     (network)
     (audio)
     (power)
@@ -188,7 +189,6 @@
   (systray 
     :spacing 2
     :halign "end"
-    :space-evenly true
     :orientation "h"
     :icon-size 18
     :prepend-new true
@@ -220,6 +220,43 @@
       ) 
   )
 )
+
+(defwidget bat []
+  (box
+    ; 76 - 100
+    (label 
+      :visible {EWW_BATTERY.BAT1.capacity>76&&EWW_BATTERY.BAT1.capacity<=100&&EWW_BATTERY.BAT1.status=="Discharging"}
+      :text "${EWW_BATTERY.BAT1.capacity}% "
+    )
+    ; 51 - 75
+    (label 
+      :visible {EWW_BATTERY.BAT1.capacity>50&&EWW_BATTERY.BAT1.capacity<=75&&EWW_BATTERY.BAT1.status=="Discharging"}
+      :text "${EWW_BATTERY.BAT1.capacity}% "
+    )
+    ; 26 - 50
+    (label 
+      :visible {EWW_BATTERY.BAT1.capacity>25&&EWW_BATTERY.BAT1.capacity<=50&&EWW_BATTERY.BAT1.status=="Discharging"}
+      :text "${EWW_BATTERY.BAT1.capacity}% "
+    )
+    ; 11 - 25
+    (label 
+      :visible {EWW_BATTERY.BAT1.capacity>11&&EWW_BATTERY.BAT1.capacity<=25&&EWW_BATTERY.BAT1.status=="Discharging"}
+      :text "${EWW_BATTERY.BAT1.capacity}% "
+    )
+    ; 0 - 10
+    (label 
+      :visible {EWW_BATTERY.BAT1.capacity>0&&EWW_BATTERY.BAT1.capacity<=10&&EWW_BATTERY.BAT1.status=="Discharging"}
+      :text "${EWW_BATTERY.BAT1.capacity}% "
+      :style "color: rgba(179, 71, 45, 1)"
+    )
+    (label 
+      :visible {EWW_BATTERY.BAT1.status=="Charging"}
+      :text "${EWW_BATTERY.BAT1.capacity}% "
+      :class "icon"
+    )
+  )
+)
+
 ; -------- Hidden Menus ------------------------------------
 
 (defwidget power-menu []
