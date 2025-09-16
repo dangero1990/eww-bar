@@ -119,6 +119,7 @@
     :orientation "h"
     :halign "start"
     :spacing 10
+    :class "workspaces"
     ;; :height "20px"   ; <- optional, only if you want it
     (for ws in {ws-data.occupied}
       (button 
@@ -173,8 +174,11 @@
       :halign "h"
       :spacing 4
       (tooltip
-        (label :text {audio.default.description})
-        (label :text {audio.mute || audio.volume==0 ? "": " ${audio.volume}"})
+        (label 
+          :style "color: #fff;" 
+          :text {audio.default.description})
+        (label 
+          :text {audio.mute || audio.volume==0 ? "": " ${audio.volume}"})
       )
     )
   )
@@ -206,7 +210,7 @@
     :halign "center"
       (for network in {network.connection_list}
         (tooltip
-          (label :class "tooltip" :text {network.state=="connected" ? "${network.connection} ${network.signal}%" : ""})
+          (label :style "color: #fff;" :text {network.state=="connected" ? "${network.connection} ${network.signal}%" : ""})
           (label 
           :class "icon"
           :text {network.type=="ethernet" ? "" : "" }
@@ -230,17 +234,17 @@
             :class "hidden-box"
             (button
                 :onclick "shutdown now"
-                :class "power-button"
+                :class "button"
                 (label :text "    shutdown")
             )
             (button
               :onclick "hyprctl dispatch exit"
-              :class "power-button"
+              :class "button"
               (label :text "    logout")  
             )   
             (button
               :onclick "reboot"
-              :class "power-button"
+              :class "button"
               (label :text "    reboot")
             )
           )
@@ -262,7 +266,7 @@
         (for device in {audio.list}
           (button 
             :onclick "pactl set-default-sink ${device.name}; eww update open-audio=false"
-            :class "power-button"
+            :class "button"
             (label :text "${device.description}")
           ) 
         )

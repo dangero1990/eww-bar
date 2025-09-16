@@ -10,11 +10,12 @@ $hallow-accent: rgb(128, 127, 127);
 }
 
 .bar {
-    padding: 0 2em;
+    padding: 0 1em;
 }
 
 .monitor1 {
     background-color: transparent;
+    border-radius: 16px;
 }
 
 .right-menu-window {
@@ -30,7 +31,7 @@ $hallow-accent: rgb(128, 127, 127);
 
 .active-ws {
     border: 3px solid $flask-yellow;
-    background: transparent;
+    background: rgba(224, 122, 50, 1);
 }
 
 .ws {
@@ -53,14 +54,18 @@ $hallow-accent: rgb(128, 127, 127);
     border-radius: 16px;
 }
 
-.power-button {
+.button {
     border: 1px solid #fff;
     background-color: $hallow-gray;
     opacity: 1;
 }
 
-.power-button:hover {
+.button:hover {
     background-color: $hallow-accent;
     color: $flask-yellow;
     border: 2px solid $flask-yellow;
+}
+
+.workspaces {
+    background-color: transparent;
 }
