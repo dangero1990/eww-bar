@@ -1,0 +1,74 @@
+$flask-yellow: rgba(196, 164, 99, 1);
+$ashen-black: rgba(28, 28, 28, 1);
+$hallow-gray: rgb(106, 106, 106);
+$hallow-accent: rgb(128, 127, 127);
+
+* {
+    font-size: 16;
+    font-family: Cinzel;
+    color: $ashen-black;
+}
+
+.bar {
+    padding: 0 2em;
+}
+
+.monitor1 {
+    background-color: transparent;
+}
+
+.right-menu-window {
+    background-color: transparent;
+}
+.right-menu-window2 {
+    background-color: transparent;
+}
+
+.center-menu-window {
+    background-color: transparent;
+}
+
+.active-ws {
+    border: 3px solid $flask-yellow;
+    background: transparent;
+}
+
+.ws {
+    background: transparent;
+    opacity: .6;
+    border: 1px solid $ashen-black;
+
+}
+
+.icon {
+    font-family: FontAwesome7Free;
+}
+
+.hidden-box {
+    background-color: $hallow-gray;
+    opacity: .7;
+    border: 1px solid $ashen-black;
+    font-size: 14px;
+    padding: 2em;
+    border-radius: 16px;
+}
+
+.power-button {
+    border: 1px solid #fff;
+    background-color: $hallow-gray;
+    opacity: 1;
+}
+
+.power-button:hover {
+    background-color: $hallow-accent;
+    color: $flask-yellow;
+    border: 2px solid $flask-yellow;
+}
+
+.tooltip {
+    color: #fff;
+}
+
+.white-text {
+    color: #fff;
+}

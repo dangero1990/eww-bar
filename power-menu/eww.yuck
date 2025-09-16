@@ -1,0 +1,24 @@
+(include "~/.config/eww/eww.yuck")
+
+(defwindow power-menu-window
+    :monitor 0
+    :geometry (geometry :x 0% :y "20px" :width "20%" :height "20%" :anchor "top right")
+    :stacking "overlay"
+    :windowtype "dialog"
+    :wm-ignore true
+)
+
+(defwidget power-menu-box []
+    (revealer
+        :reveal open-power
+        :transistion "slideleft"
+        (box
+        :orientation "v"
+            (button
+                :onclick "shutdown now"
+                (label :text "shutdown")
+            )   
+        )
+    )
+    
+)
