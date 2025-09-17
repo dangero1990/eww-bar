@@ -5,6 +5,7 @@
 (defvar showCal false)
 (defvar open-power false)
 (defvar open-audio false)
+(defvar open-hidden-menu false)
 
 ; -------- Polls & Listens ---------------------
 (defpoll time 
@@ -41,7 +42,7 @@
 (defwindow topbar
   :monitor 0
   :geometry (geometry :x "0%" :y "20px" :width "98%" :height "30px" :anchor "top center")
-  :stacking "fg"
+  :stacking "bg"
   :exclusive true
   :reserve (struts :distance "40px" :side "top")
   :windowtype "dock"
@@ -121,7 +122,7 @@
     :halign "center"
     :class "audio"
     :cursor "pointer"
-    :onclick {"eww update open-audio=${!open-audio}"}
+    :onclick {"eww update open-hidden-menu=${!open-hidden-menu} && eww update open-audio=${!open-audio}"}
     (box
       :halign "h"
       :spacing 4
@@ -139,7 +140,8 @@
 (defwidget system-tray []
   (systray 
     :spacing 2
-    :halign "end"
+    :halign "start"
+    :valign "center"
     :orientation "h"
     :icon-size 18
     :prepend-new true
@@ -149,7 +151,7 @@
 (defwidget power []
   (eventbox
     :cursor "pointer"
-    :onclick {"eww update open-power=${!open-power}"}
+    :onclick {"eww update open-hidden-menu=${!open-hidden-menu} && eww update open-power=${!open-power}"}
     (label :text "")
   )
 )

@@ -8,23 +8,16 @@ $glowing-orange: rgba(224, 122, 50, 1);
 * {
     font-size: 16;
     font-family: Cinzel;
+}
+
+.bar, 
+.topbar {
+    padding: 0 1em;
+    background-color: transparent;
     color: $ashen-black;
 }
 
-.bar {
-    padding: 0 1em;
-    background-color: transparent;
-}
-
-.topbar {
-    background-color: transparent;
-    border-radius: 16px;
-}
-
-.right-hidden-menu {
-    background-color: transparent;
-}
-
+.right-hidden-menu,
 .center-hidden-menu {
     background-color: transparent;
 }
@@ -49,18 +42,24 @@ $glowing-orange: rgba(224, 122, 50, 1);
 }
 
 .hidden-box {
-    background-image: url("/home/andrew/Pictures/castle.jpg");
+    background-image: url("/home/andrew/Pictures/dark-souls-3.jpg");
     background-position: center;
     background-size: cover;
     font-size: 14px;
     padding: 2em;
     border-radius: 16px;
+    color: #fff;
+    text-shadow:
+    -1px -1px 0 $ashen-black,
+     1px -1px 0 $ashen-black,
+    -1px  1px 0 $ashen-black,
+     1px  1px 0 $ashen-black; 
 }
 
 .button {
-    color: #fff;
-    opacity: .6;
+    opacity: .8;
     background: $hallow-gray;
+    border: 2px solid $ashen-black;
 }
 
 .button:hover {
@@ -71,4 +70,8 @@ $glowing-orange: rgba(224, 122, 50, 1);
 
 .workspaces {
     background-color: transparent;
+}
+
+.settings:hover {
+    color: $flask-yellow;
 }

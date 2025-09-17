@@ -1,6 +1,6 @@
 (defwindow right-hidden-menu
     :monitor 0
-    :geometry (geometry :x "1%" :y "20px" :anchor "top right")
+    :geometry (geometry :x "1%" :y "20px" :height "80%" :anchor "top right")
     :stacking "fg"
     :windowtype "utility"
     :exclusive false
@@ -9,39 +9,47 @@
 )
 
 (defwidget hidden-menus []
-    (box
-        :orientation "v"
-        (power-menu)
-        (audio-menu)
+    (revealer
+        :reveal open-hidden-menu
+        :transition "slideleft"
+        :duration "200ms"
+        (eventbox
+          :onhoverlost "(sleep 1;eww update open-hidden-menu=false && eww update open-power=false && eww update open-audio=false)"
+          (box
+            :class "hidden-box"
+            :orientation "v"
+            (power-menu)
+            (audio-menu)
+            (settings)
+        )
+        )
+        
+        
     )
 )
 
 (defwidget power-menu []
-    (revealer
-        :reveal open-power
-        :transition "slidedown"
-        :duration "200ms"
-        (eventbox
-          :onhoverlost "eww update open-power=false"
-          (box
-            :orientation "v"
-            :class "hidden-box"
-            :spacing 4
-            (button
-                :onclick "shutdown now"
-                :class "button"
-                (label :text "    shutdown")
-            )
-            (button
-              :onclick "hyprctl dispatch exit"
+    (expander
+        :expanded open-power
+        :name "Power Settings"
+        :class "power"
+        (box
+          :orientation "v"
+          :spacing 8
+          (button
+              :onclick "shutdown now"
               :class "button"
-              (label :text "    logout")  
-            )   
-            (button
-              :onclick "reboot"
-              :class "button"
-              (label :text "    reboot")
-            )
+              (label :text "    shutdown")
+          )
+          (button
+            :onclick "hyprctl dispatch exit"
+            :class "button"
+            (label :text "    logout")  
+          )   
+          (button
+            :onclick "reboot"
+            :class "button"
+            (label :text "    reboot")
           )
         )
     )
@@ -49,23 +57,29 @@
 )
 
 (defwidget audio-menu []
-  (revealer
-    :reveal open-audio
-    :transition "slideleft"
-    :duration "200ms"
-    (eventbox
-      :onhoverlost "eww update open-audio=false"
-      (box
-        :orientation "v"
-        :class "hidden-box"
-        (for device in {audio.list}
-          (button 
-            :onclick "pactl set-default-sink ${device.name}; eww update open-audio=false"
-            :class "button"
-            (label :text "${device.description}")
-          ) 
-        )
+  (expander
+    :expanded open-audio
+    :name "Audio Outputs"
+    (box
+      :orientation "v"
+      (for device in {audio.list}
+        (button 
+          :onclick "pactl set-default-sink ${device.name}; eww update open-audio=false"
+          :class "button"
+          (label :text "${device.description}")
+        ) 
       )
     )   
   ) 
+)
+
+(defwidget settings []
+  (eventbox
+    :halign "end"
+    :valign "end"
+    :onclick "systemsettings"
+    :cursor "pointer"
+    :class "settings"
+    (label :text "")
+  )
 )
