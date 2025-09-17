@@ -1,4 +1,4 @@
-(defwindow center-menu-window
+(defwindow center-hidden-menu
     :monitor 0
     :geometry (geometry :x "1%" :y "20px" :anchor "top center")
     :stacking "fg"

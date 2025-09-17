@@ -1,5 +1,5 @@
 (include "./right-hidden-menu.yuck")
-(include "./center-menu-window.yuck")
+(include "./center-hidden-menu.yuck")
 
 ; -------- Variables -----------------
 (defvar showCal false)
@@ -38,7 +38,7 @@
 )
 
 ; -------- Windows ---------------------
-(defwindow monitor1
+(defwindow topbar
   :monitor 0
   :geometry (geometry :x "0%" :y "20px" :width "98%" :height "30px" :anchor "top center")
   :stacking "fg"
@@ -165,7 +165,7 @@
           (label 
           :class "icon"
           :text {network.type=="ethernet" ? "" : "" }
-          :style "margin: 0 auto"
+          :style ""
           )
         )
       ) 
@@ -204,13 +204,11 @@
     (label 
       :visible {EWW_BATTERY.BAT1.status=="Charging"}
       :text "${EWW_BATTERY.BAT1.capacity}% "
-      :class "icon"
     )
     ; Fully Charged
     (label 
       :visible {EWW_BATTERY.BAT1.status=="Full"}
       :text "${EWW_BATTERY.BAT1.capacity}% "
-      :class "icon"
     )
   )
 )

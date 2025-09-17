@@ -1,4 +1,4 @@
-(defwindow right-menu-window
+(defwindow right-hidden-menu
     :monitor 0
     :geometry (geometry :x "1%" :y "20px" :anchor "top right")
     :stacking "fg"
