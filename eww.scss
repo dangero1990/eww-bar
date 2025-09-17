@@ -3,6 +3,7 @@ $ashen-black: rgba(28, 28, 28, 1);
 $hallow-gray: rgb(106, 106, 106);
 $hallow-accent: rgb(128, 127, 127);
 $ember-red: rgba(179, 71, 45, 1);
+$glowing-orange: rgba(224, 122, 50, 1);
 
 * {
     font-size: 16;
@@ -12,6 +13,7 @@ $ember-red: rgba(179, 71, 45, 1);
 
 .bar {
     padding: 0 1em;
+    background-color: transparent;
 }
 
 .monitor1 {
@@ -32,13 +34,16 @@ $ember-red: rgba(179, 71, 45, 1);
 
 .active-ws {
     border: 3px solid $flask-yellow;
-    background: rgba(224, 122, 50, 1);
+    background: $glowing-orange;
+    opacity: .8;
+    box-shadow: inset 3px 1px 2px 3px $hallow-accent;
 }
 
 .ws {
     background: transparent;
     opacity: .6;
     border: 1px solid $ashen-black;
+    box-shadow: inset 3px 1px 2px 3px $hallow-accent;
 
 }
 
@@ -47,18 +52,18 @@ $ember-red: rgba(179, 71, 45, 1);
 }
 
 .hidden-box {
-    background-color: $hallow-gray;
-    opacity: .7;
-    border: 1px solid $ashen-black;
+    background-image: url("/home/andrew/Pictures/castle.jpg");
+    background-position: center;
+    background-size: cover;
     font-size: 14px;
     padding: 2em;
     border-radius: 16px;
 }
 
 .button {
-    border: 1px solid #fff;
-    background-color: $hallow-gray;
-    opacity: 1;
+    color: #fff;
+    opacity: .6;
+    background: $hallow-gray;
 }
 
 .button:hover {

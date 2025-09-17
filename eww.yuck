@@ -1,3 +1,6 @@
+(include "./right-hidden-menu.yuck")
+(include "./center-menu-window.yuck")
+
 ; -------- Variables -----------------
 (defvar showCal false)
 (defvar open-power false)
@@ -46,59 +49,6 @@
   (bar)
 )  
 
-(defwindow monitor2
-  :monitor 1
-  :geometry (geometry :x "0%" :y "20px" :width "98%" :height "30px" :anchor "top center")
-  :stacking "fg"
-  :exclusive true
-  :reserve (struts :distance "40px" :side "top")
-  :windowtype "dock"
-  :wm-ignore false
-  (bar)
-)
-
-(defwindow monitor3
-  :monitor 2
-  :geometry (geometry :x "0%" :y "20px" :width "98%" :height "30px" :anchor "top center")
-  :stacking "fg"
-  :exclusive true
-  :reserve (struts :distance "40px" :side "top")
-  :windowtype "dock"
-  :wm-ignore false
-  (bar)
-)  
-
-(defwindow right-menu-window
-    :monitor 0
-    :geometry (geometry :x "1%" :y "20px" :anchor "top right")
-    :stacking "fg"
-    :windowtype "utility"
-    :exclusive false
-    :wm-ignore true
-    (power-menu)
-)
-
-(defwindow right-menu-window2
-    :monitor 0
-    :geometry (geometry :x "1%" :y "20px" :anchor "top right")
-    :stacking "fg"
-    :windowtype "utility"
-    :exclusive false
-    :wm-ignore true
-    (audio-menu)
-)
-
-(defwindow center-menu-window
-    :monitor 0
-    :geometry (geometry :x "1%" :y "20px" :anchor "top center")
-    :stacking "fg"
-    :windowtype "utility"
-    :exclusive false
-    :wm-ignore true
-    (cal)
-)
-
-
 ; -------- Bar Widget ---------------------
 
 (defwidget bar []
@@ -130,7 +80,7 @@
                   ? "/home/andrew/Pictures/lit-bonfire.png"
                   : "/home/andrew/Pictures/unlit-bonfire.png"}
           :image-width 16
-          :image-height 16
+          :image-height 36
         )
       )
     )
@@ -155,7 +105,7 @@
   (box
     :orientation "h"
     :halign "end"
-    :spacing 16
+    :spacing 2
     :space-evenly true
     (system-tray)
     (bat)
@@ -168,6 +118,7 @@
 (defwidget audio []
   (eventbox
     :orientation "h"
+    :halign "center"
     :class "audio"
     :cursor "pointer"
     :onclick {"eww update open-audio=${!open-audio}"}
@@ -249,81 +200,18 @@
       :text "${EWW_BATTERY.BAT1.capacity}% "
       :style "color: rgba(179, 71, 45, 1)"
     )
+    ; Charging
     (label 
       :visible {EWW_BATTERY.BAT1.status=="Charging"}
+      :text "${EWW_BATTERY.BAT1.capacity}% "
+      :class "icon"
+    )
+    ; Fully Charged
+    (label 
+      :visible {EWW_BATTERY.BAT1.status=="Full"}
       :text "${EWW_BATTERY.BAT1.capacity}% "
       :class "icon"
     )
   )
 )
 
-; -------- Hidden Menus ------------------------------------
-
-(defwidget power-menu []
-    (revealer
-        :reveal open-power
-        :transition "slidedown"
-        :duration "500ms"
-        (eventbox
-          :onhoverlost "eww update open-power=false"
-          (box
-            :orientation "v"
-            :class "hidden-box"
-            (button
-                :onclick "shutdown now"
-                :class "button"
-                (label :text "    shutdown")
-            )
-            (button
-              :onclick "hyprctl dispatch exit"
-              :class "button"
-              (label :text "    logout")  
-            )   
-            (button
-              :onclick "reboot"
-              :class "button"
-              (label :text "    reboot")
-            )
-          )
-        )
-    )
-    
-)
-
-(defwidget audio-menu []
-  (revealer
-    :reveal open-audio
-    :transition "slidedown"
-    :duration "500ms"
-    (eventbox
-      :onhoverlost "eww update open-audio=false"
-      (box
-        :orientation "v"
-        :class "hidden-box"
-        (for device in {audio.list}
-          (button 
-            :onclick "pactl set-default-sink ${device.name}; eww update open-audio=false"
-            :class "button"
-            (label :text "${device.description}")
-          ) 
-        )
-      )
-    )   
-  ) 
-)
-
-(defwidget cal []
-  (revealer
-    :reveal showCal
-    :transition "slidedown"
-    :duration "500ms"
-    (eventbox
-      :onhoverlost "eww update showCal=false"
-      (calendar
-        :day {day}
-        :month {month}
-        :showheading true
-      )
-    )
-  )
-)

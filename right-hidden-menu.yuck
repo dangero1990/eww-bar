@@ -1,0 +1,71 @@
+(defwindow right-menu-window
+    :monitor 0
+    :geometry (geometry :x "1%" :y "20px" :anchor "top right")
+    :stacking "fg"
+    :windowtype "utility"
+    :exclusive false
+    :wm-ignore true
+    (hidden-menus)
+)
+
+(defwidget hidden-menus []
+    (box
+        :orientation "v"
+        (power-menu)
+        (audio-menu)
+    )
+)
+
+(defwidget power-menu []
+    (revealer
+        :reveal open-power
+        :transition "slidedown"
+        :duration "200ms"
+        (eventbox
+          :onhoverlost "eww update open-power=false"
+          (box
+            :orientation "v"
+            :class "hidden-box"
+            :spacing 4
+            (button
+                :onclick "shutdown now"
+                :class "button"
+                (label :text "    shutdown")
+            )
+            (button
+              :onclick "hyprctl dispatch exit"
+              :class "button"
+              (label :text "    logout")  
+            )   
+            (button
+              :onclick "reboot"
+              :class "button"
+              (label :text "    reboot")
+            )
+          )
+        )
+    )
+    
+)
+
+(defwidget audio-menu []
+  (revealer
+    :reveal open-audio
+    :transition "slideleft"
+    :duration "200ms"
+    (eventbox
+      :onhoverlost "eww update open-audio=false"
+      (box
+        :orientation "v"
+        :class "hidden-box"
+        (for device in {audio.list}
+          (button 
+            :onclick "pactl set-default-sink ${device.name}; eww update open-audio=false"
+            :class "button"
+            (label :text "${device.description}")
+          ) 
+        )
+      )
+    )   
+  ) 
+)

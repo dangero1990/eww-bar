@@ -1,0 +1,25 @@
+(defwindow center-menu-window
+    :monitor 0
+    :geometry (geometry :x "1%" :y "20px" :anchor "top center")
+    :stacking "fg"
+    :windowtype "utility"
+    :exclusive false
+    :wm-ignore true
+    (cal)
+)
+
+(defwidget cal []
+  (revealer
+    :reveal showCal
+    :transition "slidedown"
+    :duration "500ms"
+    (eventbox
+      :onhoverlost "eww update showCal=false"
+      (calendar
+        :day {day}
+        :month {month}
+        :showheading true
+      )
+    )
+  )
+)
