@@ -77,7 +77,7 @@
   (eventbox
     :halign "end"
     :valign "end"
-    :onclick "systemsettings"
+    :onclick "systemsettings &"
     :cursor "pointer"
     :class "settings"
     (label :text "")
