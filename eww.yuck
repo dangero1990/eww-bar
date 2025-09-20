@@ -38,6 +38,11 @@
   "~/.config/eww/scripts/network.sh"
 )
 
+(deflisten brightness
+  :json true
+  "~/.config/eww/scripts/brightness.sh"
+)
+
 ; -------- Windows ---------------------
 (defwindow topbar
   :monitor 0
@@ -130,8 +135,17 @@
         (label 
           :style "color: #fff;" 
           :text {audio.default.description})
-        (label 
-          :text {audio.mute || audio.volume==0 ? "": " ${audio.volume}"})
+        (box 
+          (label
+            :visible {!audio.mute && audio.volume > 0} 
+            :text " ${audio.volume}"
+          )
+          (label 
+            :class "icon"
+            :visible {audio.mute || audio.volume==0}
+            :text ""
+          )
+        )
       )
     )
   )
@@ -178,7 +192,7 @@
   (box
     ; 76 - 100
     (label 
-      :visible {EWW_BATTERY.BAT1.capacity>76&&EWW_BATTERY.BAT1.capacity<=100&&EWW_BATTERY.BAT1.status=="Discharging"}
+      :visible {EWW_BATTERY.BAT1.capacity>75&&EWW_BATTERY.BAT1.capacity<=100&&EWW_BATTERY.BAT1.status=="Discharging"}
       :text "${EWW_BATTERY.BAT1.capacity}% "
     )
     ; 51 - 75
@@ -193,7 +207,7 @@
     )
     ; 11 - 25
     (label 
-      :visible {EWW_BATTERY.BAT1.capacity>11&&EWW_BATTERY.BAT1.capacity<=25&&EWW_BATTERY.BAT1.status=="Discharging"}
+      :visible {EWW_BATTERY.BAT1.capacity>10&&EWW_BATTERY.BAT1.capacity<=25&&EWW_BATTERY.BAT1.status=="Discharging"}
       :text "${EWW_BATTERY.BAT1.capacity}% "
     )
     ; 0 - 10

@@ -43,10 +43,11 @@ $glowing-orange: rgba(224, 122, 50, 1);
 
 .hidden-box {
     background-image: url("/home/andrew/Pictures/dark-souls-3.jpg");
+    opacity: .9;
     background-position: center;
     background-size: cover;
     font-size: 14px;
-    padding: 2em;
+    padding: 1em 2em;
     border-radius: 16px;
     color: #fff;
     text-shadow:
@@ -74,4 +75,8 @@ $glowing-orange: rgba(224, 122, 50, 1);
 
 .settings:hover {
     color: $flask-yellow;
+}
+
+scale trough highlight {
+  background-color: $hallow-accent;
 }

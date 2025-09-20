@@ -18,14 +18,59 @@
           (box
             :class "hidden-box"
             :orientation "v"
+            :space-evenly false
+            (brightness-slider)
+            (volume-slider)
             (power-menu)
             (audio-menu)
+            (box :vexpand true)
             (settings)
         )
         )
         
         
     )
+)
+
+(defwidget volume-slider []
+  (box
+    :orientation "v"
+    :valign "start"
+    :class "slider"
+    :height 2
+    (label 
+      :text "  volume"
+      :halign "start"
+    )
+    (scale
+      :round-digits 5
+      :min 0
+      :max 100
+      :orientation "h"
+      :value {audio.volume}
+      :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+    )
+  )
+)
+(defwidget brightness-slider []
+  (box
+    :orientation "v"
+    :valign "start"
+    :class "slider"
+    :height 2
+    (label 
+      :text "  brightness"
+      :halign "start"
+    )
+    (scale
+      :round-digits 5
+      :min 0
+      :max 100
+      :orientation "h"
+      :value {brightness}
+      :onchange "brightnessctl s {}%"
+    )
+  )
 )
 
 (defwidget power-menu []
@@ -77,6 +122,7 @@
   (eventbox
     :halign "end"
     :valign "end"
+    :height "100%"
     :onclick "systemsettings &"
     :cursor "pointer"
     :class "settings"
