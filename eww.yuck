@@ -35,7 +35,7 @@
 
 (deflisten network
   :json true
-  "~/.config/eww/scripts/network.sh"
+  "~/.config/eww/scripts/network2.sh"
 )
 
 (deflisten brightness
@@ -175,16 +175,32 @@
     :onclick "networkmanager_dmenu"
     :cursor "pointer"
     :halign "center"
-      (for network in {network.connection_list}
-        (tooltip
-          (label :style "color: #fff;" :text {network.state=="connected" ? "${network.connection} ${network.signal}%" : ""})
-          (label 
-          :class "icon"
-          :text {network.type=="ethernet" ? "" : "" }
-          :style ""
+    (tooltip
+      (box
+        (for network in {network.wifi_list}
+            (label
+              :visible {network.INUSE=="*"}
+              :text "${network.SSID} ${network.SIGNAL}%"
+            )
+        )
+      )
+      (box
+        (for connection in {network.active_connection}
+          (box
+            (label
+              :visible {connection.type=="wifi"&&connection.state=="connected"}
+              :text ""
+              :class "icon"
+            )
+            (label
+              :visible {connection.type=="ethernet"&&connection.state=="connected"}
+              :text ""
+              :class "icon"
+            )
           )
         )
-      ) 
+      )
+    )
   )
 )
 
