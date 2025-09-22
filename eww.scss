@@ -66,6 +66,7 @@ $glowing-orange: rgba(224, 122, 50, 1);
 
 .button {
     opacity: .8;
+    color: #fff;
     background: $hallow-gray;
     border: 2px solid $ashen-black;
 }
@@ -73,6 +74,12 @@ $glowing-orange: rgba(224, 122, 50, 1);
 .button:hover {
     background-color: $hallow-accent;
     color: $flask-yellow;
+    border: 2px solid $flask-yellow;
+}
+.active-button {
+    background-color: $hallow-accent;
+    color: $flask-yellow;
+    background: $hallow-gray;
     border: 2px solid $flask-yellow;
 }
 

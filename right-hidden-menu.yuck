@@ -19,12 +19,13 @@
             :class "hidden-box"
             :orientation "v"
             :space-evenly false
+            :spacing 8
             (toggle-buttons)
             (brightness-slider)
             (volume-slider)
             (power-menu)
             (audio-menu)
-            (box :vexpand true)
+            (box :width 250 :vexpand true)
             (settings)
         )
         )
@@ -36,6 +37,7 @@
 (defwidget toggle-buttons []
   (box
     :orientation "h"
+    :spacing 8
     (toggle-bluetooth)
     (toggle-wifi)
   )
@@ -43,15 +45,15 @@
 
 (defwidget toggle-bluetooth []
   (button
-    :class {bluetooth.state=="on" ? "active-ws" : "ws"}
-    :onclick {bluetooth.state=="on" ? "bluetoothctl power off" : "bluetoothctl power on"}
+    :class {bluetooth.state ? "active-button" : "button"}
+    :onclick {bluetooth.state ? "bluetoothctl power off" : "bluetoothctl power on"}
     (label :text "")
   )
 )
 
 (defwidget toggle-wifi []
   (button
-    :class {arraylength(network.wifi_list)>0 ? "active-ws" : "ws"}
+    :class {arraylength(network.wifi_list)>0 ? "active-button" : "button"}
     :onclick {arraylength(network.wifi_list)>0 ? "nmcli radio wifi off" : "nmcli radio wifi on"}
     (label :text "")
   )
@@ -135,7 +137,7 @@
       (for device in {audio.list}
         (button 
           :onclick "pactl set-default-sink ${device.name}; eww update open-audio=false"
-          :class "button"
+          :class {device.description==audio.default.description ? "active-button" : "button"}
           (label :text "${device.description}")
         ) 
       )
