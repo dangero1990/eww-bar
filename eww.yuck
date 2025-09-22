@@ -196,8 +196,8 @@
             (image
               :visible {connection.type=="wifi"&&connection.state=="connected"}
               :path "/home/andrew/.config/eww/assets/wifi.svg"
-              :image-width 16
-              :image-height 16
+              :image-width 18
+              :image-height 18
               :fill-svg "rgba(28, 28, 28, 1)"
             )
             (image

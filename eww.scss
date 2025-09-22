@@ -7,7 +7,8 @@ $glowing-orange: rgba(224, 122, 50, 1);
 
 * {
     font-size: 16;
-    font-family: Cinzel;
+    font-family: "Cinzel-ExtraBold";
+    font-weight: 600;
 }
 
 .bar, 
@@ -57,6 +58,8 @@ $glowing-orange: rgba(224, 122, 50, 1);
     padding: 1em 2em;
     border-radius: 16px;
     color: #fff;
+    font-family: "Cinzel-ExtraBold";
+    font-weight: 600;
     text-shadow:
     -1px -1px 0 $ashen-black,
      1px -1px 0 $ashen-black,
@@ -96,12 +99,8 @@ scale trough highlight {
 }
 
 calendar {
-    background: $hallow-gray;
+    background: $ashen-black;
+    color: $flask-yellow;
     padding: .5em;
     border-radius: 16px;
-}
-
-.cal-box {
-    padding: 2em;
-    background-color: $ashen-black;
 }

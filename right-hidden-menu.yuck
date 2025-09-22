@@ -66,7 +66,7 @@
     :class "slider"
     :height 2
     (label 
-      :text "  volume"
+      :text "  Volume"
       :halign "start"
     )
     (scale
@@ -86,7 +86,7 @@
     :class "slider"
     :height 2
     (label 
-      :text "  brightness"
+      :text "  Brightness"
       :halign "start"
     )
     (scale
@@ -111,17 +111,17 @@
           (button
               :onclick "shutdown now"
               :class "button"
-              (label :text "    shutdown")
+              (label :text "    SHUTDOWN")
           )
           (button
             :onclick "hyprctl dispatch exit"
             :class "button"
-            (label :text "    logout")  
+            (label :text "    LOGOUT")  
           )   
           (button
             :onclick "reboot"
             :class "button"
-            (label :text "    reboot")
+            (label :text "    REBOOT")
           )
         )
     )
