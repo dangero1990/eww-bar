@@ -1,0 +1,9 @@
+(defwindow center-hidden-menu
+    :monitor 0
+    :geometry (geometry :anchor "center")
+    :stacking "fg"
+    :windowtype "utility"
+    :exclusive false
+    :wm-ignore true
+    (cal)
+)

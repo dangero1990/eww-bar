@@ -37,8 +37,15 @@ $glowing-orange: rgba(224, 122, 50, 1);
 
 }
 
+.box {
+    border: 2px solid $ashen-black;
+    background-color: $hallow-accent;
+    opacity: .7;
+    border-radius: 16px;
+}
+
 .icon {
-    font-family: "Font Awesome 7 Free";
+    font-family: "Font Awesome 6 Free";
 }
 
 .hidden-box {

@@ -1,6 +1,6 @@
 (defwindow right-hidden-menu
     :monitor 0
-    :geometry (geometry :x "1%" :y "20px" :height "80%" :anchor "top right")
+    :geometry (geometry :x "1.5%" :y "20px" :height "80%" :anchor "top right")
     :stacking "fg"
     :windowtype "utility"
     :exclusive false
@@ -19,6 +19,7 @@
             :class "hidden-box"
             :orientation "v"
             :space-evenly false
+            (toggle-buttons)
             (brightness-slider)
             (volume-slider)
             (power-menu)
@@ -30,6 +31,30 @@
         
         
     )
+)
+
+(defwidget toggle-buttons []
+  (box
+    :orientation "h"
+    (toggle-bluetooth)
+    (toggle-wifi)
+  )
+)
+
+(defwidget toggle-bluetooth []
+  (button
+    :class {bluetooth.state=="on" ? "active-ws" : "ws"}
+    :onclick {bluetooth.state=="on" ? "bluetoothctl power off" : "bluetoothctl power on"}
+    (label :text "")
+  )
+)
+
+(defwidget toggle-wifi []
+  (button
+    :class {arraylength(network.wifi_list)>0 ? "active-ws" : "ws"}
+    :onclick {arraylength(network.wifi_list)>0 ? "nmcli radio wifi off" : "nmcli radio wifi on"}
+    (label :text "")
+  )
 )
 
 (defwidget volume-slider []

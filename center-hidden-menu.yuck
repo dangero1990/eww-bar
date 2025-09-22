@@ -1,6 +1,6 @@
 (defwindow center-hidden-menu
     :monitor 0
-    :geometry (geometry :x "1%" :y "20px" :anchor "top center")
+    :geometry (geometry :x "2%" :y "20px" :anchor "top center")
     :stacking "fg"
     :windowtype "utility"
     :exclusive false

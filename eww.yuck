@@ -6,6 +6,7 @@
 (defvar open-power false)
 (defvar open-audio false)
 (defvar open-hidden-menu false)
+(defvar center-menu false)
 
 ; -------- Polls & Listens ---------------------
 (defpoll time 
@@ -41,6 +42,11 @@
 (deflisten brightness
   :json true
   "~/.config/eww/scripts/brightness.sh"
+)
+
+(deflisten bluetooth
+  :json true
+  "~/.config/eww/scripts/bluetooth.sh"
 )
 
 ; -------- Windows ---------------------
@@ -111,7 +117,7 @@
   (box
     :orientation "h"
     :halign "end"
-    :spacing 2
+    :spacing 4
     :space-evenly true
     (system-tray)
     (bat)
@@ -188,13 +194,13 @@
         (for connection in {network.active_connection}
           (box
             (label
-              :visible {connection.type=="wifi"&&connection.state=="connected"}
-              :text ""
+              :visible {connection.state=="connected"}
+              :text {connection.type=="ethernet" ? "" : ""}
               :class "icon"
             )
             (label
-              :visible {connection.type=="ethernet"&&connection.state=="connected"}
-              :text ""
+              :visible {connection.type=="wifi"&&connection.state=="unavailable"}
+              :text ""
               :class "icon"
             )
           )
