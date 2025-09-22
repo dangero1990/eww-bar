@@ -193,15 +193,26 @@
       (box
         (for connection in {network.active_connection}
           (box
-            (label
-              :visible {connection.state=="connected"}
-              :text {connection.type=="ethernet" ? "" : ""}
-              :class "icon"
+            (image
+              :visible {connection.type=="wifi"&&connection.state=="connected"}
+              :path "/home/andrew/.config/eww/assets/wifi.svg"
+              :image-width 16
+              :image-height 16
+              :fill-svg "rgba(28, 28, 28, 1)"
             )
-            (label
+            (image
+              :visible {connection.type=="ethernet"&&connection.state=="connected"}
+              :path "/home/andrew/.config/eww/assets/ethernet.svg"
+              :image-width 16
+              :image-height 16
+              :fill-svg "rgba(28, 28, 28, 1)"
+            )
+            (image
               :visible {connection.type=="wifi"&&connection.state=="unavailable"}
-              :text ""
-              :class "icon"
+              :path "/home/andrew/.config/eww/assets/wifi-off.svg"
+              :image-width 16
+              :image-height 16
+              :fill-svg "rgba(28, 28, 28, 1)"
             )
           )
         )

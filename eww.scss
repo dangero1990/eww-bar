@@ -94,3 +94,14 @@ $glowing-orange: rgba(224, 122, 50, 1);
 scale trough highlight {
   background-color: $hallow-accent;
 }
+
+calendar {
+    background: $hallow-gray;
+    padding: .5em;
+    border-radius: 16px;
+}
+
+.cal-box {
+    padding: 2em;
+    background-color: $ashen-black;
+}

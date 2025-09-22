@@ -12,7 +12,7 @@
   (revealer
     :reveal showCal
     :transition "slidedown"
-    :duration "500ms"
+    :duration "200ms"
     (eventbox
       :onhoverlost "eww update showCal=false"
       (calendar
