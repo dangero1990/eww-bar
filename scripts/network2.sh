@@ -15,7 +15,7 @@ get_state() {
           SSID:   (.[7:-1]  | join(":")),           
           SIGNAL: (.[-1]    | tonumber)             
         }
-    )')"
+    ) | map(select(.SSID != ""))')"
 
     active_connection="$(nmcli -t -f TYPE,STATE device status | jq -R -s '                                                            split("\n")                           # split into lines, drop last empty
     | map(select(length>0))                    
