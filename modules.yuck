@@ -1,0 +1,24 @@
+(defwidget icon [img-path ?visible]
+    (image
+        :visible {visible}
+        :path {img-path}
+        :image-width 18
+        :image-height 18
+        :fill-svg "rgba(28, 28, 28, 1)"
+    )
+)
+
+(defwidget label&icon [?text ?fill img-path ?visible]
+    (box
+        :orientation "h"
+        :halign "start"
+        :visible {visible}
+        (image
+            :path {img-path}
+            :image-width 18
+            :image-height 18
+            :fill-svg {fill ?: "rgba(28, 28, 28, 1)"}
+        )
+        (label :text {text})
+    )
+)

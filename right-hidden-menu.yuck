@@ -47,7 +47,7 @@
   (button
     :class {bluetooth.state ? "active-button" : "button"}
     :onclick {bluetooth.state ? "bluetoothctl power off" : "bluetoothctl power on"}
-    (label :text "")
+    (icon :img-path "/home/andrew/.config/eww/assets/bluetooth.svg")
   )
 )
 
@@ -55,7 +55,7 @@
   (button
     :class {arraylength(network.wifi_list)>0 ? "active-button" : "button"}
     :onclick {arraylength(network.wifi_list)>0 ? "nmcli radio wifi off" : "nmcli radio wifi on"}
-    (label :text "")
+    (icon :img-path "/home/andrew/.config/eww/assets/wifi.svg")
   )
 )
 
@@ -65,10 +65,7 @@
     :valign "start"
     :class "slider"
     :height 2
-    (label 
-      :text "  Volume"
-      :halign "start"
-    )
+    (label&icon :text "Volume" :img-path "/home/andrew/.config/eww/assets/volume.svg")
     (scale
       :round-digits 5
       :min 0

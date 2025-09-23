@@ -1,5 +1,6 @@
 (include "./right-hidden-menu.yuck")
 (include "./center-hidden-menu.yuck")
+(include "./modules.yuck")
 
 ; -------- Variables -----------------
 (defvar showCal false)
@@ -142,15 +143,8 @@
           :style "color: #fff;" 
           :text {audio.default.description})
         (box 
-          (label
-            :visible {!audio.mute && audio.volume > 0} 
-            :text " ${audio.volume}"
-          )
-          (label 
-            :class "icon"
-            :visible {audio.mute || audio.volume==0}
-            :text ""
-          )
+          (label&icon :visible {!audio.mute && audio.volume > 0} :text "${audio.volume}" :img-path "/home/andrew/.config/eww/assets/volume.svg")
+          (label&icon :visible {audio.mute || audio.volume==0} :img-path "/home/andrew/.config/eww/assets/volume-mute.svg")
         )
       )
     )
@@ -172,7 +166,7 @@
   (eventbox
     :cursor "pointer"
     :onclick {"eww update open-hidden-menu=${!open-hidden-menu} && eww update open-power=${!open-power}"}
-    (label :text "")
+    (icon :img-path "/home/andrew/.config/eww/assets/power.svg" :visibible true)
   )
 )
 
@@ -203,15 +197,15 @@
             (image
               :visible {connection.type=="ethernet"&&connection.state=="connected"}
               :path "/home/andrew/.config/eww/assets/ethernet.svg"
-              :image-width 16
-              :image-height 16
+              :image-width 18
+              :image-height 18
               :fill-svg "rgba(28, 28, 28, 1)"
             )
             (image
               :visible {connection.type=="wifi"&&connection.state=="unavailable"}
               :path "/home/andrew/.config/eww/assets/wifi-off.svg"
-              :image-width 16
-              :image-height 16
+              :image-width 18
+              :image-height 18
               :fill-svg "rgba(28, 28, 28, 1)"
             )
           )
